@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "Keycloak Admin API",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-123456789000",
+    "description": "Collection pour administrer Keycloak via l'API REST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - Get Admin Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "grant_type", "value": "password" },
+            { "key": "client_id", "value": "admin-cli" },
+            { "key": "username", "value": "{{admin_username}}" },
+            { "key": "password", "value": "{{admin_password}}" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/realms/master/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["realms", "master", "protocol", "openid-connect", "token"]
+        }
+      }
+    },
+    {
+      "name": "2 - List Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/admin/realms/OrderRealm/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["admin", "realms", "OrderRealm", "users"]
+        }
+      }
+    },
+    {
+      "name": "3 - List Realm Roles",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/admin/realms/OrderRealm/roles",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["admin", "realms", "OrderRealm", "roles"]
+        }
+      }
+    },
+    {
+      "name": "4 - Assign Role to User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[ { \"name\": \"orders.write\" } ]"
+        },
+        "url": {
+          "raw": "http://localhost:8080/admin/realms/OrderRealm/users/{{user_id}}/role-mappings/realm",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [
+            "admin", "realms", "OrderRealm", "users", "{{user_id}}", "role-mappings", "realm"
+          ]
+        }
+      }
+    }
+  ]
+}

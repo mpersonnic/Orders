@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "Orders API - Gateway + Keycloak",
+    "_postman_id": "c8f3b1c4-1b2e-4c6e-9d1a-123456789abc",
+    "description": "Collection pour tester Keycloak, Gateway et Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - Get Token (Keycloak)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "grant_type", "value": "password" },
+            { "key": "client_id", "value": "api-gateway" },
+            { "key": "client_secret", "value": "{{client_secret}}" },
+            { "key": "username", "value": "{{username}}" },
+            { "key": "password", "value": "{{password}}" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/realms/OrderRealm/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [
+            "realms",
+            "OrderRealm",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 - GET Orders (via Gateway)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5014/orders/api/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5014",
+          "path": ["orders", "api", "orders"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 - POST Create Order (via Gateway)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"productName\": \"Test\",\n      \"quantity\": 1,\n      \"unitPrice\": 10\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5014/orders/api/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5014",
+          "path": ["orders", "api", "orders"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "info": {
+    "name": "Orders API (Direct)",
+    "_postman_id": "b2c3d4e5-f6a7-8901-bcde-234567890000",
+    "description": "Collection pour tester Orders API directement sans passer par la Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - GET Orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": {
+          "raw": "http://localhost:5260/api/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5260",
+          "path": ["api", "orders"]
+        }
+      }
+    },
+    {
+      "name": "2 - POST Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"productName\": \"Test\",\n      \"quantity\": 1,\n      \"unitPrice\": 10\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5260/api/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5260",
+          "path": ["api", "orders"]
+        }
+      }
+    }
+  ]
+}
