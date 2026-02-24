@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  toggleSidebar() {
+    document.querySelector('.sidebar')?.classList.toggle('open');
+  }
+
 }

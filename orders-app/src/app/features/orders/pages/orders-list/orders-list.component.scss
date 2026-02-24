@@ -1,0 +1,63 @@
+.orders-card {
+  background: var(--color-bg-light);
+  padding: var(--space-5);
+  border-radius: 12px;
+  color: var(--color-text);
+
+  h2 {
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* TABLE GLOBALE */
+table {
+  width: 100%;
+  border-spacing: 0;
+  color: var(--color-text) !important;
+
+  th, td {
+    color: var(--color-text) !important;
+  }
+
+  th {
+    background: var(--color-bg-lighter) !important;
+    color: var(--color-text-muted) !important;
+    font-weight: 600;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  td {
+    background: var(--color-bg-light) !important;
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+/* HOVER SUR LES LIGNES */
+tr.mat-row:hover {
+  background: var(--color-bg-lighter) !important;
+  transition: background 0.2s ease;
+}
+
+/* BADGES DE STATUT */
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+
+  &.paid {
+    background: #2ecc71;
+    color: black;
+  }
+
+  &.pending {
+    background: #f1c40f;
+    color: black;
+  }
+
+  &.shipped {
+    background: #3498db;
+    color: black;
+  }
+}

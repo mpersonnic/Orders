@@ -7,8 +7,15 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'orders', component: OrdersListComponent },
-      { path: '', redirectTo: 'orders', pathMatch: 'full' }
+      { 
+        path: 'orders', 
+        component: OrdersListComponent 
+      },
+      { 
+        path: '', 
+        redirectTo: 'orders', 
+        pathMatch: 'full' 
+      }
     ]
   }
 ];
