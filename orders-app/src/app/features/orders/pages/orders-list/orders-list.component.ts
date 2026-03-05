@@ -4,15 +4,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-orders-list',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatCardModule,
-    MatButtonModule
-  ],
-  templateUrl: './orders-list.component.html',
-  styleUrls: ['./orders-list.component.scss']
+    selector: 'app-orders-list',
+    imports: [
+        MatTableModule,
+        MatCardModule,
+        MatButtonModule
+    ],
+    templateUrl: './orders-list.component.html',
+    styleUrls: ['./orders-list.component.scss']
 })
 export class OrdersListComponent {
   displayedColumns = ['id', 'customer', 'amount', 'status', 'actions'];
